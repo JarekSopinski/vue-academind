@@ -3,6 +3,7 @@ const app = Vue.createApp({
     return {
       counter: 0,
       name: '',
+      lastName: '',
       fullname: ''
     };
   },
@@ -14,7 +15,13 @@ const app = Vue.createApp({
       // will execute whenever 'name' changes (in data)
       if (value === '') { this.fullname = ''; }
       else {
-        this.fullname = value + ' ' + 'Schwarzmuller';
+        this.fullname = value + ' ' + this.lastName;
+      }
+    },
+    lastName(value) {
+      if (value === '') { this.fullname = ''; }
+      else {
+        this.fullname = this.name + ' ' + value;
       }
     }
   },
