@@ -11,6 +11,11 @@ const app = Vue.createApp({
     // watcher methods execute whenever their connected data values changes
     // last value is always passed as an argument
     // we can also receive two args (newValue and oldValue)
+    counter (value) {
+      if (value > 50) {
+        this.counter = 0;
+      }
+    }
     // name(value) {
     //   // will execute whenever 'name' changes (in data)
     //   if (value === '') { this.fullname = ''; }
