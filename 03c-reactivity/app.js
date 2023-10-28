@@ -4,35 +4,35 @@ const app = Vue.createApp({
       counter: 0,
       name: '',
       lastName: '',
-      fullname: ''
+      // fullname: ''
     };
   },
   watch: {
     // watcher methods execute whenever their connected data values changes
     // last value is always passed as an argument
     // we can also receive two args (newValue and oldValue)
-    name(value) {
-      // will execute whenever 'name' changes (in data)
-      if (value === '') { this.fullname = ''; }
-      else {
-        this.fullname = value + ' ' + this.lastName;
-      }
-    },
-    lastName(value) {
-      if (value === '') { this.fullname = ''; }
-      else {
-        this.fullname = this.name + ' ' + value;
-      }
-    }
+    // name(value) {
+    //   // will execute whenever 'name' changes (in data)
+    //   if (value === '') { this.fullname = ''; }
+    //   else {
+    //     this.fullname = value + ' ' + this.lastName;
+    //   }
+    // },
+    // lastName(value) {
+    //   if (value === '') { this.fullname = ''; }
+    //   else {
+    //     this.fullname = this.name + ' ' + value;
+    //   }
+    // }
   },
   computed: {
     // Computet props are only revaluated if one of their deps. changes
-    // fullname() {
-    //   if (this.name === '') {
-    //     return '';
-    //   }
-    //   return this.name + ' ' + 'Schwarzmuller';
-    // }
+    fullname() {
+      if (this.name === '' || this.lastName === '') {
+        return '';
+      }
+      return this.name + ' ' + this.lastName;
+    }
   },
   methods: {
     setName(event) {
