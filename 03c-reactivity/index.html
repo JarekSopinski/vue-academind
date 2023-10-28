@@ -18,14 +18,15 @@
     </header>
     <section id="events">
       <h2>Events in Action</h2>
-      <button v-on:click="add(10)">Add 10</button>
-      <button v-on:click="reduce(5)">Subtract 5</button>
+      <!-- @click is a shorthand for v-on:click -->
+      <button @click="add(10)">Add 10</button>
+      <button @click="reduce(5)">Subtract 5</button>
       <p>Result: {{ counter }}</p>
       <!-- v-model is a shortcut for "v-bind:value v-on:input" -->
       <!-- it provides two-way data binding -->
       <input type="text" v-model="name">
       <input type="text" v-model="lastName">
-      <button v-on:click="resetInput">Reset Input</button>
+      <button @click="resetInput">Reset Input</button>
       <p>Your Name: {{ fullname }}</p>
     </section>
   </body>
