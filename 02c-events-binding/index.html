@@ -21,6 +21,8 @@
       <button v-on:click="add(5)">Add 5</button>
       <!-- on only right click -->
       <button v-on:click.right="reduce(5)">Subtract 5</button>
+      <!-- v-once changes dynamic value only once -->
+      <p v-once>Starting Counter: {{ counter }}</p>
       <p>Result: {{ counter }}</p>
       <!-- v-on:keyup.enter - only on enter click -->
       <input 
