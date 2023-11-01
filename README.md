@@ -1,0 +1,1 @@
+Projects and exercises from 'Vue - The Complete Guide' course on Udemy.
