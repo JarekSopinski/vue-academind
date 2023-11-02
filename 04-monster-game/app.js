@@ -4,6 +4,8 @@ const MONSTER_MIN_ATTACK = 8;
 const MONSTER_MAX_ATTACK = 15;
 const SPECIAL_MIN_ATTACK = 10;
 const SPECIAL_MAX_ATTACK = 25;
+const HEAL_MIN = 8;
+const HEAL_MAX = 20;
 
 const getRandomValue = (min, max) => {
   return Math.floor(Math.random() * (max - min)) + min;
@@ -43,6 +45,16 @@ const app = Vue.createApp({
       this.currentRound++;
       const attackValue = getRandomValue(SPECIAL_MIN_ATTACK, SPECIAL_MAX_ATTACK);
       this.monsterHealth -= attackValue;
+      this.attackPlayer();
+    },
+    healPlayer() {
+      this.currentRound++;
+      const healValue = getRandomValue(HEAL_MIN, HEAL_MAX);
+      if (this.playerHealth + healValue > 100) {
+        this.playerHealth = 100;
+      } else {
+        this.playerHealth += healValue;
+      }
       this.attackPlayer();
     }
   },
