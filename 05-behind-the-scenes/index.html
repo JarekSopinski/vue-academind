@@ -33,7 +33,7 @@
       <h2>How Vue Works</h2>
       <input
         type="text"
-        @input="saveInput"
+        ref="userInput"
       />
       <button @click="setText">Set Text</button>
       <p>{{ message }}</p>
