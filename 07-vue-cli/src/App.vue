@@ -2,7 +2,8 @@
     <section>
         <h2>My Friends</h2>
         <ul>
-            <li v-for="f in friends" :key="f.id">{{ f.name }}</li>
+            <friend-contact></friend-contact>
+            <friend-contact></friend-contact>
         </ul>
     </section>
 </template>
