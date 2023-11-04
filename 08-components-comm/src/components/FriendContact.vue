@@ -42,6 +42,17 @@ export default {
       default: false
     }
   },
+  emits: ['on-toggle-favorite'],
+  // emits: {
+  //   'on-toggle-favorite': (id) => {
+  //     if (id) {
+  //       return true;
+  //     } else {
+  //       console.warn('Id is missing!');
+  //       return false;
+  //     }
+  //   }
+  // },
   data() {
     return {
       detailsAreVisible: false
