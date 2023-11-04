@@ -13,7 +13,7 @@
 
 <script>
 export default {
-  props: ['topics'],
+  inject: ['topics'], // reference 'provide' value from (not direct) ancestor component
   emits: ['select-topic']
 };
 </script>
