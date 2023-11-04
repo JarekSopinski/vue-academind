@@ -5,9 +5,17 @@
     </header>
     <new-friend @on-add-contact="addContact" />
     <ul>
-      <friend-contact v-for="friend in friends" :key="friend.id" :id="friend.id" :name="friend.name"
-        :phone-number="friend.phone" :email-address="friend.email" :is-favorite="friend.isFavorite"
-        @on-toggle-favorite="toggleFavoriteStatus" />
+      <friend-contact 
+        v-for="friend in friends" 
+        :key="friend.id" 
+        :id="friend.id" 
+        :name="friend.name"
+        :phone-number="friend.phone" 
+        :email-address="friend.email" 
+        :is-favorite="friend.isFavorite"
+        @on-toggle-favorite="toggleFavoriteStatus"
+        @on-delete="deleteContact"
+        />
     </ul>
   </section>
 </template>
@@ -48,6 +56,9 @@ export default {
         isFavorite: false
       };
       this.friends.push(newFriendContact);
+    },
+    deleteContact(friendId) {
+      this.friends = this.friends.filter(f => f.id !== friendId);
     }
   },
 };
