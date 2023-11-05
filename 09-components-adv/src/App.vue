@@ -8,7 +8,10 @@
     <!-- <active-goals v-if="selectedComponent === 'active-goals'"></active-goals>
     <manage-goals v-if="selectedComponent === 'manage-goals'"></manage-goals> -->
 
-    <component :is="selectedComponent"></component>
+    <!-- keep-alive wrapper preserves component's state when its not rendered -->
+    <keep-alive>
+      <component :is="selectedComponent"></component>
+    </keep-alive>
 
   </div>
 </template>
