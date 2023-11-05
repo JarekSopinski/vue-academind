@@ -2,10 +2,11 @@
     <!-- slot renders children of this component -->
     <!-- we can use named slot if we want multiple -->
     <div>
-        <header>
+        <!-- render slot only if content is provided -->
+        <header v-if="$slots.header">
             <slot name="header">
                 <!-- default slot's content -->
-                <h2>The Default</h2>
+                <!-- <h2>The Default</h2> -->
             </slot>
         </header>
         <slot></slot>
@@ -14,7 +15,7 @@
 
 <script>
 export default {
-    
+
 }
 </script>
 
