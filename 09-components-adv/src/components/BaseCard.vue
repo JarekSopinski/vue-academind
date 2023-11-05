@@ -1,6 +1,10 @@
 <template>
+    <!-- slot renders children of this component -->
+    <!-- we can use named slot if we want multiple -->
     <div>
-        <!-- slot renders children of this component -->
+        <header>
+            <slot name="header"></slot>
+        </header>
         <slot></slot>
     </div>
 </template>

@@ -1,12 +1,18 @@
 <template>
   <section>
+
     <base-card>
-      <header>
-        <h3>{{ fullName }}</h3>
-        <base-badge :type="role" :caption="role.toUpperCase()"></base-badge>
-      </header>
-      <p>{{ infoText }}</p>
+      <template v-slot:header>
+        <!-- this will go to a slot with name 'header' -->
+          <h3>{{ fullName }}</h3>
+          <base-badge :type="role" :caption="role.toUpperCase()"></base-badge>
+      </template>
+      <!-- this will go to default (unnamed) slot (not required) -->
+      <template v-slot:default>
+        <p>{{ infoText }}</p>
+      </template>
     </base-card>
+  
   </section>
 </template>
 
