@@ -9,12 +9,16 @@
       :role="activeUser.role"
     ></user-info>
 
-    <course-goals>
+    <!-- <course-goals>
       <template #default="slotProps">
         <h2>{{ slotProps.item }}</h2>
       </template>
-    </course-goals>
+    </course-goals> -->
 
+    <course-goals #default="slotProps">
+        <h2>{{ slotProps.item }}</h2>
+    </course-goals>
+  
   </div>
 </template>
 
