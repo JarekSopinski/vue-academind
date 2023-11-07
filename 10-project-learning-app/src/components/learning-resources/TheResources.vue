@@ -52,7 +52,8 @@ export default {
     provide() {
         return {
             resources: this.storedResources,
-            addResource: this.addResource
+            addResource: this.addResource,
+            deleteResource: this.removeResource
         }
     },
     computed: {
@@ -76,6 +77,18 @@ export default {
             };
             this.storedResources.unshift(newResource);
             this.selectedTab = 'stored-resources';
+        },
+        removeResource(resId) {
+            /**
+             * This will not work - array won't be updated in child components
+             * because we're creating new array.
+             * 
+             * this.storedResources = this.storedResources.filter(res => res.id !== resId);
+             * 
+             * Instead, we've to modify original array:
+             */
+             const resIndex = this.storedResources.findIndex(res => res.id === resId);
+             this.storedResources.splice(resIndex, 1);
         }
     }
 }
