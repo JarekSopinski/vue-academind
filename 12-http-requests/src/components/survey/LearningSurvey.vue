@@ -53,6 +53,8 @@
 </template>
 
 <script>
+const FIREBASE_URL = 'https://vue-http-demo-514f1-default-rtdb.europe-west1.firebasedatabase.app';
+
 export default {
   data() {
     return {
@@ -61,7 +63,7 @@ export default {
       invalidInput: false,
     };
   },
-  emits: ['survey-submit'],
+  // emits: ['survey-submit'],
   methods: {
     submitSurvey() {
       if (this.enteredName === '' || !this.chosenRating) {
@@ -70,9 +72,20 @@ export default {
       }
       this.invalidInput = false;
 
-      this.$emit('survey-submit', {
-        userName: this.enteredName,
-        rating: this.chosenRating,
+      // this.$emit('survey-submit', {
+      //   userName: this.enteredName,
+      //   rating: this.chosenRating,
+      // });
+
+      fetch(`${FIREBASE_URL}/surveys.json`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: this.enteredName,
+          rating: this.chosenRating
+        })
       });
 
       this.enteredName = '';
