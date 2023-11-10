@@ -53,7 +53,7 @@
 </template>
 
 <script>
-const FIREBASE_URL = 'https://vue-http-demo-514f1-default-rtdb.europe-west1.firebasedatabase.app';
+import { FIREBASE_URL } from '../../App.vue';
 
 export default {
   data() {

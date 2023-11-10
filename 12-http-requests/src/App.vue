@@ -7,6 +7,8 @@
 import LearningSurvey from './components/survey/LearningSurvey.vue';
 import UserExperiences from './components/survey/UserExperiences.vue';
 
+export const FIREBASE_URL = 'https://vue-http-demo-514f1-default-rtdb.europe-west1.firebasedatabase.app';
+
 export default {
   components: {
     LearningSurvey,
