@@ -11,7 +11,8 @@ const router = createRouter({
     routes: [
         { path: '/teams', component: TeamsList },
         { path: '/users', component: UsersList },
-        { path: '/teams/:teamId', component: TeamMembers }
+        // setting props:true tells router that dynamic params (teamId) should be passed as props
+        { path: '/teams/:teamId', component: TeamMembers, props: true }
     ],
     linkActiveClass: 'active' // optional, will default to 'router-link-active'
 });
