@@ -9,6 +9,10 @@
         :role="member.role"
       ></user-item>
     </ul>
+    <router-link to="/teams/t2">
+      <!-- here component will not update without adding a watcher -->
+      Go to Team 2
+    </router-link>
   </section>
 </template>
 
@@ -26,10 +30,10 @@ export default {
       members: [],
     };
   },
-  created() { // Life cycle hook called when component is created
-    
+  methods: {
+    loadTeamMembers(route) {
     // get route param 'teamId' (i.e. teams/t1)
-    const teamId = this.$route.params.teamId;
+    const teamId = route.params.teamId;
 
     // build data based on route param
     const selectedTeam = this.teams.find(team => team.id === teamId);
@@ -41,6 +45,15 @@ export default {
     }
     this.members = selectedMembers;
     this.teamName = selectedTeam.name;
+    }
+  },
+  created() { // Life cycle hook called when component is created
+    this.loadTeamMembers(this.$route);
+  },
+  watch: {
+    $route(newRoute) {
+      this.loadTeamMembers(newRoute);
+    }
   }
 };
 </script>
