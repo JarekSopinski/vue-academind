@@ -9,6 +9,7 @@ import TeamMembers from './components/teams/TeamMembers';
 const router = createRouter({
     history: createWebHistory(), // use built-in browser support to handle history
     routes: [
+        { path: '/', redirect: '/teams' },
         { path: '/teams', component: TeamsList },
         { path: '/users', component: UsersList },
         // setting props:true tells router that dynamic params (teamId) should be passed as props
