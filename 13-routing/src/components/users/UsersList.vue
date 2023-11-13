@@ -18,6 +18,11 @@ export default {
       // do something, than change route
       this.$router.push('/teams');
     }
+  },
+  beforeRouteEnter(to, from, next) {
+    // Component level navigation guard
+    console.log('UserList Cmp beforeRouteEnter');
+    next();
   }
 };
 </script>

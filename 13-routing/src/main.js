@@ -22,7 +22,15 @@ const router = createRouter({
                 { name: 'team-members', path: ':teamId', component: TeamMembers, props: true },  // setting props:true tells router that dynamic params (teamId) should be passed as props
             ]
         },
-        { path: '/users', components: { default: UsersList, footer: UsersFooter } },
+        {
+            path: '/users', 
+            components: { default: UsersList, footer: UsersFooter },
+            beforeEnter(to, from, next) {
+                // navigation guard specific to this route
+                console.log('users beforeEnter');
+                next();
+            } 
+        },
         { path: '/:notFound(.*)', component: NotFound }
     ],
     linkActiveClass: 'active', // optional, will default to 'router-link-active'

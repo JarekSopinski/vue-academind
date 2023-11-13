@@ -48,6 +48,12 @@ export default {
     this.loadTeamMembers(this.teamId);
     console.log(this.$route.query);
   },
+  beforeRouteUpdate(to, from, next) {
+    console.log('TeamMembers Cmp beforeRouteUpadate');
+    // called when this component is about to be reused with new data because route changed
+    // this.loadTeamMembers(to.params.teamId); // could be an alternative to watching teamId in watchers
+    next();
+  },
   watch: {
     teamId(newId) {
       this.loadTeamMembers(newId);
