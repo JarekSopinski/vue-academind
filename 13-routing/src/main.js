@@ -27,7 +27,7 @@ const router = createRouter({
     ],
     linkActiveClass: 'active', // optional, will default to 'router-link-active'
     scrollBehavior(to, from, savedPosition) {
-        console.log(to, from, savedPosition);
+        // console.log(to, from, savedPosition);
         if (savedPosition) {
             // Upon returning, go back to previous scroll postition
             return savedPosition;
@@ -36,6 +36,15 @@ const router = createRouter({
         return { left: 0, top: 0 };       
     }
 });
+
+// navigation guard
+router.beforeEach((to, from, next) => {
+    // next(false) cancels navigation, next(true) or next() confirms it
+    // next() also accept a route or navigation object to redirect to - i.e. next('/users');
+    console.log('Global before each');
+    console.log(to, from);
+    next();
+})
 
 const app = createApp(App);
 
