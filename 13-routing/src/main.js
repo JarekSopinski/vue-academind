@@ -25,7 +25,16 @@ const router = createRouter({
         { path: '/users', components: { default: UsersList, footer: UsersFooter } },
         { path: '/:notFound(.*)', component: NotFound }
     ],
-    linkActiveClass: 'active' // optional, will default to 'router-link-active'
+    linkActiveClass: 'active', // optional, will default to 'router-link-active'
+    scrollBehavior(to, from, savedPosition) {
+        console.log(to, from, savedPosition);
+        if (savedPosition) {
+            // Upon returning, go back to previous scroll postition
+            return savedPosition;
+        }
+        // Upon going forward to new route, scroll to the top
+        return { left: 0, top: 0 };       
+    }
 });
 
 const app = createApp(App);
