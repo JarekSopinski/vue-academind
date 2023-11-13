@@ -46,6 +46,7 @@ export default {
   },
   created() { // Life cycle hook called when component is created
     this.loadTeamMembers(this.teamId);
+    console.log(this.$route.query);
   },
   watch: {
     teamId(newId) {
