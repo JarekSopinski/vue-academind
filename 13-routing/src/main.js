@@ -52,7 +52,13 @@ router.beforeEach((to, from, next) => {
     console.log('Global before each');
     console.log(to, from);
     next();
-})
+});
+
+// runs after navigation is confirmed
+router.afterEach((to, from) => {
+    // maybe send analytics data to save navigation action?
+    console.log('Global after each', to, from);
+});
 
 const app = createApp(App);
 
