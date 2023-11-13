@@ -11,9 +11,9 @@ const router = createRouter({
     history: createWebHistory(), // use built-in browser support to handle history
     routes: [
         { path: '/', redirect: '/teams' },
-        { path: '/teams', component: TeamsList, children: [
+        { name: 'teams', path: '/teams', component: TeamsList, children: [
             // in child routes we don't have to repeat parent path, we only add nested segments
-            { path: ':teamId', component: TeamMembers, props: true },  // setting props:true tells router that dynamic params (teamId) should be passed as props
+            { name: 'team-members', path: ':teamId', component: TeamMembers, props: true },  // setting props:true tells router that dynamic params (teamId) should be passed as props
         ] },
         { path: '/users', component: UsersList },
         { path: '/:notFound(.*)', component: NotFound }
