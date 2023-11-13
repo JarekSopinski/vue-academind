@@ -1,8 +1,13 @@
 <template>
   <the-navigation></the-navigation>
   <main>
+    <!-- default (unnamed) nested router -->
     <router-view></router-view>
   </main>
+  <footer>
+    <!-- named nested router -->
+    <router-view name="footer"></router-view>
+  </footer>
 </template>
 
 <script>
