@@ -19,6 +19,8 @@
       @before-leave="beforeLeave"
       @leave="leave"
       @after-leave="afterLeave"
+      @enter-cancelled="enterCancel"
+      @leave-cancelled="leaveCancel"
     >
       <p v-if="paragraphIsVisible">
         This is only visible sometimes...
@@ -66,24 +68,53 @@ export default {
       animatedBlock: false,
       dialogIsVisible: false,
       paragraphIsVisible: false,
-      usersAreVisible: false
+      usersAreVisible: false,
+      enterInterval: null,
+      leaveInterval: null
     };
   },
   methods: {
+    enterCancel() {
+      clearInterval(this.enterInterval);
+
+    },
+    leaveCancel() {
+      clearInterval(this.leaveInterval);
+    },
     beforeEnter(el) {
       console.log('beforeEnter', el);
+      el.style.opacity = 0;
     },
-    enter(el) {
+    enter(el, done) {
       console.log('enter', el);
+      let round = 1;
+      this.enterInterval = setInterval(() => {
+        el.style.opacity = round * 0.01;
+        round++;
+        if (round > 100) {
+          clearInterval(this.enterInterval);
+          done();
+        }
+      }, 20);
     },
     afterEnter(el) {
       console.log('afterEnter', el);
     },
     beforeLeave(el) {
       console.log('beforeLeave', el);
+      el.style.opacity = 1;
     },
-    leave(el) {
+    leave(el, done) {
       console.log('leave', el);
+      let round = 1;
+      this.leaveInterval = setInterval(() => {
+        el.style.opacity = 1 - round * 0.01;
+        round++;
+        if (round > 100) {
+          clearInterval(this.leaveInterval);
+          done();
+        }
+      }, 20);
     },
     afterLeave(el) {
       console.log('afterLeave', el);
@@ -163,44 +194,6 @@ button:active {
 .animate {
   /* transform: translateX(-150px); */
   animation: slide-fade 0.3s ease-out forwards;
-}
-
-/* Classes toggled by Vue on Transition component - for ADDING */
-
-/* Starting state */
-.para-from {
-  /* opacity: 0;
-  transform: translateY(-30px); */
-}
-
-/* All states (?) */
-.para-enter-active {
-  animation: slide-scale 2s ease-out;
-}
-
-/* End state */
-.para-enter-to {
-  /* opacity: 1;
-  transform: translateY(0); */
-}
-
-/* Classes toggled by Vue on Transition component - for REMOVING */
-
-/* Starting state */
-.para-leave-from {
-  /* opacity: 1;
-  transform: translateY(0); */
-}
-
-/* All states (?) */
-.para-leave-active {
-  animation: slide-scale 0.3s ease-out;
-}
-
-/* End state */
-.para-leave-to {
-  /* opacity: 0;
-  transform: translateY(30px); */
 }
 
 .fade-button-enter-from,
