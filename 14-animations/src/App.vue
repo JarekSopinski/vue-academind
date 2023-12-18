@@ -11,7 +11,15 @@
     <!-- name="para" is a custom prefix for animation classes -->
     <!-- (.para-enter-active instead of .v-enter-active) -->
     <!-- alternatively we can use props for certain classes, like enter-to-class="our-class" -->
-    <Transition name="para">
+    <Transition
+      name="para"
+      @before-enter="beforeEnter"
+      @enter="enter"
+      @after-enter="afterEnter"
+      @before-leave="beforeLeave"
+      @leave="leave"
+      @after-leave="afterLeave"
+    >
       <p v-if="paragraphIsVisible">
         This is only visible sometimes...
       </p>
@@ -22,10 +30,19 @@
   </div>
 
   <div class="container">
-    <Transition name="fade-button" mode="out-in">
+    <Transition
+      name="fade-button"
+      mode="out-in"
+    >
       <!-- More than one components can be added under Transition, if they are conditionally visible. -->
-      <button @click="showUsers" v-if="!usersAreVisible">Show Users</button>
-      <button @click="hideUsers" v-else>Hide Users</button>
+      <button
+        @click="showUsers"
+        v-if="!usersAreVisible"
+      >Show Users</button>
+      <button
+        @click="hideUsers"
+        v-else
+      >Hide Users</button>
     </Transition>
   </div>
 
@@ -53,6 +70,24 @@ export default {
     };
   },
   methods: {
+    beforeEnter(el) {
+      console.log('beforeEnter', el);
+    },
+    enter(el) {
+      console.log('enter', el);
+    },
+    afterEnter(el) {
+      console.log('afterEnter', el);
+    },
+    beforeLeave(el) {
+      console.log('beforeLeave', el);
+    },
+    leave(el) {
+      console.log('leave', el);
+    },
+    afterLeave(el) {
+      console.log('afterLeave', el);
+    },
     showUsers() {
       this.usersAreVisible = true;
     },
@@ -140,7 +175,7 @@ button:active {
 
 /* All states (?) */
 .para-enter-active {
-  animation: slide-scale 0.3s ease-out;
+  animation: slide-scale 2s ease-out;
 }
 
 /* End state */
@@ -198,5 +233,4 @@ button:active {
   100% {
     transform: translateX(-150px) scale(1);
   }
-}
-</style>
+}</style>
