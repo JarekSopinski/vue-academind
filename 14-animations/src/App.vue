@@ -6,6 +6,7 @@
     ></div>
     <button @click="animateBlock">Animate</button>
   </div>
+
   <div class="container">
     <!-- name="para" is a custom prefix for animation classes -->
     <!-- (.para-enter-active instead of .v-enter-active) -->
@@ -19,13 +20,15 @@
       Toggle Paragraph
     </button>
   </div>
+
   <base-modal
     @close="hideDialog"
-    v-if="dialogIsVisible"
+    :open="dialogIsVisible"
   >
     <p>This is a test dialog!</p>
     <button @click="hideDialog">Close it!</button>
   </base-modal>
+
   <div class="container">
     <button @click="showDialog">Show Dialog</button>
   </div>
@@ -122,7 +125,7 @@ button:active {
 
 /* All states (?) */
 .para-enter-active {
-  animation:  slide-scale 0.3s ease-out;
+  animation: slide-scale 0.3s ease-out;
 }
 
 /* End state */
@@ -162,4 +165,5 @@ button:active {
   100% {
     transform: translateX(-150px) scale(1);
   }
-}</style>
+}
+</style>
