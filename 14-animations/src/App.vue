@@ -21,6 +21,14 @@
     </button>
   </div>
 
+  <div class="container">
+    <Transition name="fade-button" mode="out-in">
+      <!-- More than one components can be added under Transition, if they are conditionally visible. -->
+      <button @click="showUsers" v-if="!usersAreVisible">Show Users</button>
+      <button @click="hideUsers" v-else>Hide Users</button>
+    </Transition>
+  </div>
+
   <base-modal
     @close="hideDialog"
     :open="dialogIsVisible"
@@ -41,9 +49,16 @@ export default {
       animatedBlock: false,
       dialogIsVisible: false,
       paragraphIsVisible: false,
+      usersAreVisible: false
     };
   },
   methods: {
+    showUsers() {
+      this.usersAreVisible = true;
+    },
+    hideUsers() {
+      this.usersAreVisible = false;
+    },
     animateBlock() {
       this.animatedBlock = true;
     },
@@ -151,6 +166,24 @@ button:active {
 .para-leave-to {
   /* opacity: 0;
   transform: translateY(30px); */
+}
+
+.fade-button-enter-from,
+.fade-button-leave-to {
+  opacity: 0;
+}
+
+.fade-button-enter-active {
+  transition: opacity 0.3s ease-out;
+}
+
+.fade-button-leave-active {
+  transition: opacity 0.3s ease-in;
+}
+
+.fade-button-enter-to,
+.fade-button-leave-from {
+  opacity: 1;
 }
 
 @keyframes slide-scale {
