@@ -7,7 +7,10 @@
     <button @click="animateBlock">Animate</button>
   </div>
   <div class="container">
-    <Transition>
+    <!-- name="para" is a custom prefix for animation classes -->
+    <!-- (.para-enter-active instead of .v-enter-active) -->
+    <!-- alternatively we can use props for certain classes, like enter-to-class="our-class" -->
+    <Transition name="para">
       <p v-if="paragraphIsVisible">
         This is only visible sometimes...
       </p>
@@ -112,18 +115,18 @@ button:active {
 /* Classes toggled by Vue on Transition component - for ADDING */
 
 /* Starting state */
-.v-enter-from {
+.para-from {
   /* opacity: 0;
   transform: translateY(-30px); */
 }
 
 /* All states (?) */
-.v-enter-active {
+.para-enter-active {
   animation:  slide-scale 0.3s ease-out;
 }
 
 /* End state */
-.v-enter-to {
+.para-enter-to {
   /* opacity: 1;
   transform: translateY(0); */
 }
@@ -131,18 +134,18 @@ button:active {
 /* Classes toggled by Vue on Transition component - for REMOVING */
 
 /* Starting state */
-.v-leave-from {
+.para-leave-from {
   /* opacity: 1;
   transform: translateY(0); */
 }
 
 /* All states (?) */
-.v-leave-active {
+.para-leave-active {
   animation: slide-scale 0.3s ease-out;
 }
 
 /* End state */
-.v-leave-to {
+.para-leave-to {
   /* opacity: 0;
   transform: translateY(30px); */
 }
