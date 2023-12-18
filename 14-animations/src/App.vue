@@ -1,7 +1,20 @@
 <template>
   <div class="container">
-    <div class="block" :class="{animate: animatedBlock}"></div>
+    <div
+      class="block"
+      :class="{ animate: animatedBlock }"
+    ></div>
     <button @click="animateBlock">Animate</button>
+  </div>
+  <div class="container">
+    <Transition>
+      <p v-if="paragraphIsVisible">
+        This is only visible sometimes...
+      </p>
+    </Transition>
+    <button @click="toggleParagraph">
+      Toggle Paragraph
+    </button>
   </div>
   <base-modal
     @close="hideDialog"
@@ -20,12 +33,16 @@ export default {
   data() {
     return {
       animatedBlock: false,
-      dialogIsVisible: false
+      dialogIsVisible: false,
+      paragraphIsVisible: false,
     };
   },
   methods: {
     animateBlock() {
       this.animatedBlock = true;
+    },
+    toggleParagraph() {
+      this.paragraphIsVisible = !this.paragraphIsVisible;
     },
     showDialog() {
       this.dialogIsVisible = true;
@@ -92,15 +109,54 @@ button:active {
   animation: slide-fade 0.3s ease-out forwards;
 }
 
+/* Classes toggled by Vue on Transition component - for ADDING */
+
+/* Starting state */
+.v-enter-from {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+
+/* All states (?) */
+.v-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+/* End state */
+.v-enter-to {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Classes toggled by Vue on Transition component - for REMOVING */
+
+/* Starting state */
+.v-leave-from {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* All states (?) */
+.v-leave-active {
+  transition: all 0.3s ease-in;
+}
+
+/* End state */
+.v-leave-to {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
 @keyframes slide-fade {
   0% {
     transform: translateX(0) scale(1);
   }
+
   70% {
     transform: translateX(-120px) scale(1.1);
   }
+
   100% {
     transform: translateX(-150px) scale(1);
   }
-}
-</style>
+}</style>
