@@ -113,41 +113,41 @@ button:active {
 
 /* Starting state */
 .v-enter-from {
-  opacity: 0;
-  transform: translateY(-30px);
+  /* opacity: 0;
+  transform: translateY(-30px); */
 }
 
 /* All states (?) */
 .v-enter-active {
-  transition: all 0.3s ease-out;
+  animation:  slide-scale 0.3s ease-out;
 }
 
 /* End state */
 .v-enter-to {
-  opacity: 1;
-  transform: translateY(0);
+  /* opacity: 1;
+  transform: translateY(0); */
 }
 
 /* Classes toggled by Vue on Transition component - for REMOVING */
 
 /* Starting state */
 .v-leave-from {
-  opacity: 1;
-  transform: translateY(0);
+  /* opacity: 1;
+  transform: translateY(0); */
 }
 
 /* All states (?) */
 .v-leave-active {
-  transition: all 0.3s ease-in;
+  animation: slide-scale 0.3s ease-out;
 }
 
 /* End state */
 .v-leave-to {
-  opacity: 0;
-  transform: translateY(30px);
+  /* opacity: 0;
+  transform: translateY(30px); */
 }
 
-@keyframes slide-fade {
+@keyframes slide-scale {
   0% {
     transform: translateX(0) scale(1);
   }
