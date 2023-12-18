@@ -16,6 +16,7 @@ const router = createRouter({
         {
             name: 'teams',
             path: '/teams',
+            meta: { needsAuth: true }, // custom key-values, can be accessed anywhere where route object is available
             components: { default: TeamsList, footer: TeamsFooter },
             children: [
                 // in child routes we don't have to repeat parent path, we only add nested segments
@@ -49,6 +50,9 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
     // next(false) cancels navigation, next(true) or next() confirms it
     // next() also accept a route or navigation object to redirect to - i.e. next('/users');
+    if (to.meta.needsAuth) {
+        console.log('Needs auth!');
+    }
     console.log('Global before each');
     console.log(to, from);
     next();
