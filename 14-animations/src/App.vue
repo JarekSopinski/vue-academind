@@ -8,11 +8,8 @@
   </div>
 
   <div class="container">
-    <!-- name="para" is a custom prefix for animation classes -->
-    <!-- (.para-enter-active instead of .v-enter-active) -->
-    <!-- alternatively we can use props for certain classes, like enter-to-class="our-class" -->
     <Transition
-      name="para"
+      :ccs="false"
       @before-enter="beforeEnter"
       @enter="enter"
       @after-enter="afterEnter"
