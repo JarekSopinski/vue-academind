@@ -1,73 +1,13 @@
 <template>
-  <div class="container">
-    <UsersList />
-  </div>
-  <div class="container">
-    <div
-      class="block"
-      :class="{ animate: animatedBlock }"
-    ></div>
-    <button @click="animateBlock">Animate</button>
-  </div>
-
-  <div class="container">
-    <Transition
-      :ccs="false"
-      @before-enter="beforeEnter"
-      @enter="enter"
-      @after-enter="afterEnter"
-      @before-leave="beforeLeave"
-      @leave="leave"
-      @after-leave="afterLeave"
-      @enter-cancelled="enterCancel"
-      @leave-cancelled="leaveCancel"
-    >
-      <p v-if="paragraphIsVisible">
-        This is only visible sometimes...
-      </p>
-    </Transition>
-    <button @click="toggleParagraph">
-      Toggle Paragraph
-    </button>
-  </div>
-
-  <div class="container">
-    <Transition
-      name="fade-button"
-      mode="out-in"
-    >
-      <!-- More than one components can be added under Transition, if they are conditionally visible. -->
-      <button
-        @click="showUsers"
-        v-if="!usersAreVisible"
-      >Show Users</button>
-      <button
-        @click="hideUsers"
-        v-else
-      >Hide Users</button>
-    </Transition>
-  </div>
-
-  <base-modal
-    @close="hideDialog"
-    :open="dialogIsVisible"
-  >
-    <p>This is a test dialog!</p>
-    <button @click="hideDialog">Close it!</button>
-  </base-modal>
-
-  <div class="container">
-    <button @click="showDialog">Show Dialog</button>
-  </div>
+  <router-view v-slot="slotProps">
+    <transition name="fade-button" mode="out-in">
+      <component :is="slotProps.Component"></component>
+    </transition>
+  </router-view>
 </template>  
 
 <script>
-import UsersList from './components/UsersList.vue';
-
 export default {
-  components: {
-    UsersList
-  },
   data() {
     return {
       animatedBlock: false,
@@ -217,6 +157,16 @@ button:active {
 .fade-button-enter-to,
 .fade-button-leave-from {
   opacity: 1;
+}
+
+.route-enter-from {}
+.route-enter-active {
+  animation: slide-scale 0.4s ease-out;
+}
+.route-enter-to {}
+
+.route-leave-active {
+  animation: slide-scale 0.4s ease-in;
 }
 
 @keyframes slide-scale {
