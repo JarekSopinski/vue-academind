@@ -17,7 +17,7 @@ import { mapGetters } from 'vuex';
 import BaseContainer from './components/BaseContainer.vue';
 import TheCounter from './components/TheCounter.vue';
 import ChangeCounter from './components/ChangeCounter.vue';
-import FavoriteValue from './components/FavoriteValue.vue';
+import FavoriteValue from './components/FavoriteValue.vue'
 import UserAuth from './components/UserAuth.vue';
 
 export default {
