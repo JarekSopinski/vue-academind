@@ -10,7 +10,7 @@ export default {
         // counter() {
         //     return this.$store.getters.finalCounter;
         // }
-        ...mapGetters(['finalCounter']) // returns computed properties from store
+        ...mapGetters('numbers', ['finalCounter']) // returns computed properties from store
     }
 }
 </script>
