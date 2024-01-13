@@ -1,13 +1,16 @@
 <template>
     <section>
-        FILTER
+        <CoachFilter @change-filter="setFilters" />
     </section>
 
     <section>
         <base-card>
             <div class="controls">
                 <base-button mode="outline">Refresh</base-button>
-                <base-button link to="/register">Register as Coach</base-button>
+                <base-button
+                    link
+                    to="/register"
+                >Register as Coach</base-button>
             </div>
             <ul v-if="hasCoaches">
                 <CoachItem
@@ -28,17 +31,40 @@
 
 <script>
 import CoachItem from '../../components/coaches/CoachItem.vue';
+import CoachFilter from '../../components/coaches/CoachFilter.vue';
 
 export default {
     components: {
-        CoachItem
+        CoachItem,
+        CoachFilter
+    },
+    data() {
+        return {
+            activeFilters: {
+                frontend: true,
+                backend: true,
+                career: true
+            }
+        }
     },
     computed: {
         filteredCoaches() {
-            return this.$store.getters['coaches/coaches'];
+            const coaches = this.$store.getters['coaches/coaches'];
+            return coaches.filter(coach => {
+                for (const area in this.activeFilters) {
+                    if (this.activeFilters[area] && coach.areas.includes(area))
+                        return true;
+                }
+                return false;
+            });
         },
         hasCoaches() {
             return this.$store.getters['coaches/hasCoaches'];
+        }
+    },
+    methods: {
+        setFilters(updatedFilters) {
+            this.activeFilters = updatedFilters;
         }
     }
 }
