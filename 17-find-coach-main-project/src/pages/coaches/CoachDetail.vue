@@ -16,6 +16,7 @@
                 >Contact
                 </base-button>
             </header>
+            <router-view></router-view>
         </base-card>
     </section>
 
@@ -54,7 +55,7 @@ export default {
             return this.selectedCoach.description;
         },
         contactLink() {
-            return this.$route.path + '/' + this.id + '/contact';
+            return this.$route.path + '/contact';
         }
     },
     created() {
