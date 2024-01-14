@@ -1,0 +1,1 @@
+export const FIREBASE_URL = 'https://vue-find-coach-96f54-default-rtdb.europe-west1.firebasedatabase.app';
