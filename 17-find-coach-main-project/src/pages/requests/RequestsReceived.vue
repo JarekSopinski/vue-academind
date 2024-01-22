@@ -1,29 +1,33 @@
 <template>
-    <base-dialog
-        :show="Boolean(error)"
-        title="An error occurred"
-        @close="handleError"
-    >
-        <p>{{ error }}</p>
-    </base-dialog>
+    <div>
 
-    <section>
-        <base-card>
-            <header>
-                <h2>Requests Received</h2>
-            </header>
-            <base-spinner v-if="isLoading"></base-spinner>
-            <ul v-else-if="hasRequests && !isLoading">
-                <RequestItem
-                    v-for="req in receivedRequests"
-                    :key="req.id"
-                    :email="req.userEmail"
-                    :message="req.message"
-                />
-            </ul>
-            <h3 v-else>You haven't received any requests yet!</h3>
-        </base-card>
-    </section>
+        <base-dialog
+            :show="Boolean(error)"
+            title="An error occurred"
+            @close="handleError"
+        >
+            <p>{{ error }}</p>
+        </base-dialog>
+
+        <section>
+            <base-card>
+                <header>
+                    <h2>Requests Received</h2>
+                </header>
+                <base-spinner v-if="isLoading"></base-spinner>
+                <ul v-else-if="hasRequests && !isLoading">
+                    <RequestItem
+                        v-for="req in receivedRequests"
+                        :key="req.id"
+                        :email="req.userEmail"
+                        :message="req.message"
+                    />
+                </ul>
+                <h3 v-else>You haven't received any requests yet!</h3>
+            </base-card>
+        </section>
+
+    </div>
 </template>
 
 <script>
@@ -47,7 +51,7 @@ export default {
             return this.$store.getters['requests/hasRequests'];
         }
     },
-    created(){
+    created() {
         this.loadRequests();
     },
     methods: {
@@ -69,17 +73,17 @@ export default {
 
 <style scoped>
 header {
-  text-align: center;
+    text-align: center;
 }
 
 ul {
-  list-style: none;
-  margin: 2rem auto;
-  padding: 0;
-  max-width: 30rem;
+    list-style: none;
+    margin: 2rem auto;
+    padding: 0;
+    max-width: 30rem;
 }
 
 h3 {
-  text-align: center;
+    text-align: center;
 }
 </style>
