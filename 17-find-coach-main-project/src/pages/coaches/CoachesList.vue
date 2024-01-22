@@ -6,7 +6,10 @@
     <section>
         <base-card>
             <div class="controls">
-                <base-button mode="outline">Refresh</base-button>
+                <base-button
+                    mode="outline"
+                    @click="loadCoaches"
+                >Refresh</base-button>
                 <base-button
                     v-if="!isCoach"
                     link
@@ -66,11 +69,17 @@ export default {
             return this.$store.getters['coaches/hasCoaches'];
         }
     },
+    created() {
+        this.loadCoaches();
+    },
     methods: {
         setFilters(updatedFilters) {
             this.activeFilters = updatedFilters;
+        },
+        loadCoaches() {
+            this.$store.dispatch('coaches/loadCoaches');
         }
-    }
+    },
 }
 </script>
 
@@ -84,5 +93,4 @@ ul {
 .controls {
     display: flex;
     justify-content: space-between;
-}
-</style>
+}</style>
