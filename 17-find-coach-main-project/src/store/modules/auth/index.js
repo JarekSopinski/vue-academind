@@ -1,4 +1,4 @@
-import mutation from './mutations';
+import mutations from './mutations';
 import actions from './actions';
 import getters from './getters';
 
@@ -10,7 +10,7 @@ export default {
             tokenExpiration: null
         }
     },
-    mutation,
+    mutations,
     actions,
     getters
 }

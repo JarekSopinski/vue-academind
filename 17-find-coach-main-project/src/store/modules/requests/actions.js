@@ -24,7 +24,8 @@ export default {
     },
     async fetchRequests(context) {
         const coachId = context.rootGetters.userId;
-        const response = await fetch(`${FIREBASE_URL}/requests/${coachId}.json`);
+        const token = context.rootGetters.token;
+        const response = await fetch(`${FIREBASE_URL}/requests/${coachId}.json?auth=${token}`);
         const responseData = await response.json();
 
         if (!response.ok) {
