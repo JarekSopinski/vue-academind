@@ -24,10 +24,10 @@
 
                     <base-button
                         link
-                        to="/auth"
+                        to="/auth?redirect=register"
                         v-if="!isLoggedIn"
                     >
-                        Login
+                        Login to Register as Coach
                     </base-button>
 
                     <base-button
