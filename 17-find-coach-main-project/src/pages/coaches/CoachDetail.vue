@@ -47,16 +47,16 @@ export default {
     },
     computed: {
         fullName() {
-            return this.selectedCoach.firstName + ' ' + this.selectedCoach.lastName;
+            return this.selectedCoach?.firstName + ' ' + this.selectedCoach?.lastName;
         },
         areas() {
-            return this.selectedCoach.areas;
+            return this.selectedCoach?.areas;
         },
         rate() {
-            return this.selectedCoach.hourlyRate;
+            return this.selectedCoach?.hourlyRate;
         },
         description() {
-            return this.selectedCoach.description;
+            return this.selectedCoach?.description;
         },
         contactLink() {
             return this.$route.path + '/contact';
