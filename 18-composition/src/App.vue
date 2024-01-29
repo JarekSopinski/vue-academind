@@ -2,21 +2,24 @@
   <section class="container">
     <h2>{{ user.name }}</h2>
     <h3>{{ user.age }}</h3>
+    <button @click="setNewUser">Change Age</button>
   </section>
 </template>
 
 <script setup>
 import { reactive } from 'vue';
 
-const user = reactive({ // 'reactive' is like 'ref', but more suited for objects
+const user = reactive({
   name: 'John',
   age: 100
 });
 
-setTimeout(() => {
-  user.name = 'Adam'; // with 'reactive' we don't access user.value.name
+const setNewUser = () => {
+  // Instead of 'methods' option, we can use normal functions.
+  user.name = 'Adam';
   user.age = 101;
-}, 2000);
+}
+
 </script>
 
 <style>
