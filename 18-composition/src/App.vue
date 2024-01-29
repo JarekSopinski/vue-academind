@@ -4,14 +4,14 @@
   </section>
 </template>
 
-<script>
-export default {
-  data() {
-    return {
-      userName: 'Maximilian',
-    };
-  },
-};
+<script setup>
+import { ref } from 'vue';
+
+const userName = ref('John'); // define reactive value
+
+setTimeout(() => {
+  userName.value = 'Adam'; // update reactive value
+}, 2000);
 </script>
 
 <style>
