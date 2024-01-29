@@ -1,16 +1,21 @@
 <template>
   <section class="container">
-    <h2>{{ userName }}</h2>
+    <h2>{{ user.name }}</h2>
+    <h3>{{ user.age }}</h3>
   </section>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { reactive } from 'vue';
 
-const userName = ref('John'); // define reactive value
+const user = reactive({ // 'reactive' is like 'ref', but more suited for objects
+  name: 'John',
+  age: 100
+});
 
 setTimeout(() => {
-  userName.value = 'Adam'; // update reactive value
+  user.name = 'Adam'; // with 'reactive' we don't access user.value.name
+  user.age = 101;
 }, 2000);
 </script>
 
