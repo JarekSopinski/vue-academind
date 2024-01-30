@@ -2,8 +2,8 @@
   <section class="container">
     <h2>{{ userName }}</h2>
     <div>
-      <input type="text" placeholder="First Name" @input="setFirstName">
-      <input type="text" placeholder="Last Name" @input="setLastName">
+      <input type="text" placeholder="First Name" v-model="firstName">
+      <input type="text" placeholder="Last Name" v-model="lastName">
     </div>
   </section>
 </template>
@@ -17,14 +17,6 @@ const lastName = ref('');
 const userName = computed(() => {
   return firstName.value + ' ' + lastName.value;
 });
-
-const setFirstName = (event) => {
-  firstName.value = event.target.value;
-}
-
-const setLastName = (event) => {
-  lastName.value = event.target.value;
-}
 
 </script>
 
