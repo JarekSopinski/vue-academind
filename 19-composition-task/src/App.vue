@@ -19,8 +19,29 @@
   </section>
 </template>
 
-<script>
-export default {
+<script setup>
+import { ref, computed, watch } from 'vue';
+
+const availableFunds = ref(100);
+const currentExpenses = ref(0);
+const enteredExpense = ref(0);
+
+const remainingFunds = computed(() => {
+  return availableFunds.value - currentExpenses.value;
+});
+
+const addExpense = () => {
+  currentExpenses.value += enteredExpense.value;
+};
+
+watch(remainingFunds, (newValue) => {
+  if (newValue < 0) {
+    alert('You are broke!');
+  }
+});
+
+/**
+ * export default {
   data() {
     return {
       availableFunds: 100,
@@ -46,6 +67,7 @@ export default {
     },
   },
 };
+ */
 </script>
 
 <style>
