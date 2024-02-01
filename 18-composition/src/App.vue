@@ -3,7 +3,6 @@
     <UserData
       :firstName="firstName"
       :lastName="lastName"
-      :age="userAge"
     />
     <button @click="setAge">Set Age</button>
     <div>
@@ -23,7 +22,7 @@
 </template>
 
 <script setup>
-import { ref, watch } from 'vue';
+import { ref, watch, provide } from 'vue';
 import UserData from './components/UserData.vue';
 
 const firstName = ref('');
@@ -31,6 +30,8 @@ const lastName = ref('');
 const userAge = ref(100);
 
 const lastNameInput = ref(null); // ref for input is the same as ref for value
+
+provide('userAge', userAge);
 
 watch(userAge, (newValue, oldValue) => {
   console.log('Old age ', oldValue);
