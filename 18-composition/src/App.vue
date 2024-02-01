@@ -3,7 +3,7 @@
     <UserData
       :firstName="firstName"
       :lastName="lastName"
-      :age="age"
+      :age="userAge"
     />
     <button @click="setAge">Set Age</button>
     <div>
