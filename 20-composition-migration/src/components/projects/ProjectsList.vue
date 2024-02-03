@@ -12,9 +12,54 @@
   </base-container>
 </template>
 
-<script>
+<script setup>
+import { ref, computed, defineProps, watch, toRefs } from 'vue';
+
 import ProjectItem from './ProjectItem.vue';
 
+const props = defineProps({
+  user: Object
+});
+
+const enteredSearchTerm = ref('');
+const activeSearchTerm = ref('');
+
+const availableProjects = computed(() => {
+  if (activeSearchTerm.value) {
+        return props.user.projects.filter((prj) =>
+          prj.title.includes(activeSearchTerm.value)
+        );
+      }
+      return props.user.projects;
+});
+
+const hasProjects = computed(() => {
+  return props.user.projects && availableProjects.value.length > 0;
+});
+
+watch(enteredSearchTerm, (newValue) => {
+  setTimeout(() => {
+    if (newValue === enteredSearchTerm.value) {
+      activeSearchTerm.value = newValue;
+    }
+  }, 300);
+});
+
+// const propsWithRefs = toRefs(props);
+// const user = propsWithRefs.user;
+const { user } = toRefs(props);
+
+watch(user, () => {
+  enteredSearchTerm.value = '';
+});
+
+const updateSearch = (val) => {
+    enteredSearchTerm.value = val;
+};
+
+
+
+/**
 export default {
   components: {
     ProjectItem,
@@ -57,6 +102,7 @@ export default {
     },
   },
 };
+ */
 </script>
 
 <style scoped>
