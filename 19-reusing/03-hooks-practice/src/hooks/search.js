@@ -1,7 +1,7 @@
 import { ref, computed, watch } from 'vue';
 
 export default function useSearch(
-    items = [],
+    items, // ref to array
     searchProp = ''
 ) {
     const enteredSearchTerm = ref('');
@@ -10,11 +10,11 @@ export default function useSearch(
     const availableItems = computed(function () {
         let filteredItems = [];
         if (activeSearchTerm.value) {
-            filteredItems = items.filter((item) =>
+            filteredItems = items.value.filter((item) =>
                 item[searchProp].includes(activeSearchTerm.value)
             );
-        } else if (items) {
-            filteredItems = items;
+        } else if (items.value) {
+            filteredItems = items.value;
         }
         return filteredItems;
     });
